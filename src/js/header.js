@@ -1,15 +1,21 @@
+import searchIcon from '@/assets/icons/search.png';
+import darkIcon from '@/assets/icons/dark.png';
+import lightIcon from '@/assets/icons/light.png';
+import profileImg from '@/assets/images/profile.png';
+import logoIcon from '@/assets/icons/logo.png';
+
 const headerTemplate = () => {
   return `
-  <h1>I</h1>
-  <input type="text" placeholder="Search" id="searchinput"/>
-  <button id="searchbtn">
-    <img src="/icons/search.svg" alt="Search icon"/>
-  </button>
-  <button id="darkmodebtn">
-    <img src="/icons/dark.svg" alt="Dark mode icon" id="darkmodeicon/">
-  </button>
-  <img src="/images/profile.jpg" alt="Profile image" class="profileimg"/>
-`;
+    <img src="${logoIcon}" alt="Logo" class="logo" />
+    <input type="text" placeholder="Search" id="searchinput"/>
+    <button id="searchbtn">
+      <img src="${searchIcon}" alt="Search icon"/>
+    </button>
+    <button id="darkmodebtn">
+      <img src="${darkIcon}" alt="Dark mode icon" id="darkmodeicon" />
+    </button>
+    <img src="${profileImg}" alt="Profile image" class="profileimg"/>
+  `;
 };
 
 const themeSwitch = () => {
@@ -22,9 +28,9 @@ const listeners = () => {
     themeSwitch();
     const theme = document.body.classList.contains("dark");
     if (theme) {
-      document.querySelector("#darkmodeicon").src = "/icons/light.svg";
+      document.querySelector("#darkmodeicon").src = lightIcon;
     } else {
-      document.querySelector("#darkmodeicon").src = "/icons/dark.svg";
+      document.querySelector("#darkmodeicon").src = darkIcon;
     }
   });
 };
