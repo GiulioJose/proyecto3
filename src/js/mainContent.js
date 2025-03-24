@@ -1,6 +1,11 @@
+// API
+import { searchPhotos } from './api/unsplash.js';
+
+// Assets
 import uploadIcon from '@/assets/icons/upload.png';
 import moreIcon from '@/assets/icons/more.png';
 
+// Plantilla para cada tarjeta
 const cardTemplate = (item) => {
   return `
     <li class="gallery-item" style="background-image: url(${item.urls.regular}); border: 10px solid ${item.color}">
@@ -24,7 +29,7 @@ const cardTemplate = (item) => {
   `;
 };
 
-// Renderizador
+// Renderizador de galería
 const renderGallery = (items) => {
   const gallery = document.createElement('ul');
   gallery.classList.add('gallery');
@@ -36,29 +41,9 @@ const renderGallery = (items) => {
   document.querySelector('main').appendChild(gallery);
 };
 
-// 🔄 Datos de prueba para probar visualmente
-const dummyItems = [
-  {
-    urls: {
-      regular: 'https://picsum.photos/id/1015/400/300',
-      full: 'https://picsum.photos/id/1015/800/600'
-    },
-    links: {
-      html: 'https://unsplash.com/photos/example1'
-    },
-    color: '#e60022'
-  },
-  {
-    urls: {
-      regular: 'https://picsum.photos/id/1016/400/300',
-      full: 'https://picsum.photos/id/1016/800/600'
-    },
-    links: {
-      html: 'https://unsplash.com/photos/example2'
-    },
-    color: '#1abc9c'
-  }
-];
+// Ejecutar búsqueda real
+searchPhotos('nature').then(items => {
+  renderGallery(items);
+});
 
-// Ejecutar para probar
-renderGallery(dummyItems);
+export { renderGallery };

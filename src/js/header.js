@@ -4,6 +4,9 @@ import lightIcon from '@/assets/icons/light.png';
 import profileImg from '@/assets/images/profile.png';
 import logoIcon from '@/assets/icons/logo.png';
 
+import { searchPhotos } from './api/unsplash.js';
+import { renderGallery } from './mainContent.js';
+
 const headerTemplate = () => {
   return `
     <img src="${logoIcon}" alt="Logo" class="logo" />
@@ -23,15 +26,29 @@ const themeSwitch = () => {
 };
 
 const listeners = () => {
+  // Modo oscuro
   const darkmodebtn = document.querySelector("#darkmodebtn");
   darkmodebtn.addEventListener("click", () => {
     themeSwitch();
     const theme = document.body.classList.contains("dark");
-    if (theme) {
-      document.querySelector("#darkmodeicon").src = lightIcon;
-    } else {
-      document.querySelector("#darkmodeicon").src = darkIcon;
-    }
+    document.querySelector("#darkmodeicon").src = theme ? lightIcon : darkIcon;
+  });
+
+  // Búsqueda
+  const searchBtn = document.querySelector('#searchbtn');
+  const searchInput = document.querySelector('#searchinput');
+
+  searchBtn.addEventListener('click', async () => {
+    const keyword = searchInput.value.trim();
+    if (!keyword) return;
+
+    const results = await searchPhotos(keyword);
+
+    // Limpiar galería antes de agregar nuevas tarjetas
+    const main = document.querySelector('main');
+    main.innerHTML = ''; 
+
+    renderGallery(results);
   });
 };
 
