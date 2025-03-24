@@ -3,9 +3,9 @@
 @use './global/reset';
 @use './global/base';
 
-// Layouts (ejemplo: header, footer, grid)
+// Layouts (ejemplo: header, footer)
 @use './layouts/header';
-@use './layouts/home';
+@use './layouts/footer';
 
 // Components (ejemplo: button, card, navbar)
 @use './global/themes';
