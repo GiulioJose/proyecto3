@@ -5,7 +5,7 @@ import profileImg from '@/assets/images/profile.png';
 import logoIcon from '@/assets/icons/logo.png';
 
 import { searchPhotos } from './api/unsplash.js';
-import { renderGallery } from './mainContent.js';
+import { renderGallery } from './gallery.js';
 
 const headerTemplate = () => {
   return `
