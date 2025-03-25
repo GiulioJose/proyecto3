@@ -1,13 +1,16 @@
-button {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@use '../global/mixins' as *;
 
-  &:hover {
-    background-color: var(--secondary);
-  }
+button {
+  @include button();
+}
+
+// Visitar
+.btn { 
+  @include button(var(--logo), 50px, 90px);
+  color: var(--color-background);
+  border-radius: 25px;
+  font-size: 1.1rem;
+    &:hover{
+      background-color: #b8001b;
+    }
 }

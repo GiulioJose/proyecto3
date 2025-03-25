@@ -2,14 +2,16 @@
 @use './global/variables';
 @use './global/reset';
 @use './global/base';
+@use './global/extends';
 
 // Layouts (ejemplo: header, footer)
 @use './layouts/header';
-@use './layouts/main';
+@use './layouts/gallery';
 @use './layouts/footer';
 
 // Components (ejemplo: button, card, navbar)
 @use './global/themes';
 @use './components/button';
 @use './components/input';
+@use './components/card';
 

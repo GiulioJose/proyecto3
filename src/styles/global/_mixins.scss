@@ -1,0 +1,15 @@
+@mixin button($color: var(--color-background), $height: 40px, $width: 40px) {
+  height: $height;
+  width: $width;
+  background-color: $color;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: var(--secondary);
+    cursor: pointer;
+  }
+}

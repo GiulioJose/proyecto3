@@ -1,94 +1,102 @@
+@use '../global/mixins' as *;
+
 .gallery-item {
   width: 250px;
-  flex: 0 0 auto;
+  border-radius: 2rem;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .image-wrapper {
     position: relative;
+    width: 100%;
     border-radius: 2rem;
     overflow: hidden;
-    border: none; // el borde se inyecta inline desde el JS
+  }
 
-    .gallery-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-      border-radius: 2rem;
-    }
+  .gallery-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 2rem;
+  }
 
-    .info {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      backdrop-filter: brightness(50%) blur(2px);
-      opacity: 0;
-      transition: opacity 0.2s ease-in-out;
-      z-index: 1;
-    }
+  .info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: brightness(50%) blur(2px);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 
-    &:hover .info {
-      opacity: 1;
-      cursor: zoom-in;
-    }
-
-    .save-btn {
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .links {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      a {
-        background-color: var(--transparent);
-        padding: 0.5rem;
-        border-radius: 2rem;
-        font-size: 0.8rem;
-      }
-
-      img {
-        width: 24px;
-        height: 24px;
-      }
-
-      div {
-        display: flex;
-        gap: 1rem;
-      }
-
-      .links-icon {
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .full-link {
-        width: 200px;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        color: black;
-      }
-    }
-
-    button {
-      padding: 1rem 1.4rem;
-      border-radius: 2rem;
-      border: none;
-      background-color: var(--logo);
+    .btn {
+      @include button(var(--logo), 50px, 90px);
       color: var(--color-background);
-      font-size: 1rem;
+      border-radius: 25px;
+      font-size: 1.1rem;
+
+      &:hover {
+        background-color: #b8001b;
+      }
+    }
+  }
+
+  .image-wrapper:hover .info {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  .likes-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    @include button($height: 50px, $width:50px);
+    color: var(--primary);
+    font-size: 0.8rem;
+    gap: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    &:hover {
+      background-color: var(--color-background);
+    }
+  }
+
+  .author-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 8px solid currentColor;
+    background-color: white;
+    position: relative;
+    top: -50px; // mitad hacia arriba
+    z-index: 1;
+    object-fit: cover;
+  }
+
+  .author-info {
+    margin-top: -45px;
+    text-align: center;
+
+    .author-name {
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .photo-date {
+      font-size: 0.85rem;
+      color: #666;
+      margin: 0;
     }
   }
 }

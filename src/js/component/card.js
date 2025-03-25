@@ -1,27 +1,28 @@
-// Assets
-import uploadIcon from '@/assets/icons/upload.png';
-import moreIcon from '@/assets/icons/more.png';
-
-// Función plantilla de tarjeta
 export const cardTemplate = (item) => {
+  const date = new Date(item.created_at).toLocaleDateString('es-ES');
+
   return `
-    <li class="gallery-item" style="background-image: url(${item.urls.regular}); border: 10px solid ${item.color}">
+  <li class="gallery-item">
+    <div class="image-wrapper">
+      <img class="gallery-img" src="${item.urls.regular}" alt="Imagen de ${item.user.name}" />
       <div class="info">
-        <div class="save-btn">
-          <button>Guardar</button>
-        </div>
-        <div class="links">
-          <a href="${item.links.html}" class="full-link">${item.links.html}</a>
-          <div>
-            <a href="${item.urls.full}" target="_blank" class="links-icon">
-              <img src="${uploadIcon}" alt="Upload icon" />
-            </a>
-            <a href="#null" class="links-icon">
-              <img src="${moreIcon}" alt="More icon" />
-            </a>    
-          </div>
-        </div>
+        <a href="${item.links.html}" target="_blank" class="btn">Visitar</a>
       </div>
-    </li>
-  `;
-};
+      <div class="likes-badge">❤️
+      <span>${item.likes}</span></div>
+    </div>
+
+    <img 
+      class="author-photo" 
+      src="${item.user.profile_image.large}" 
+      alt="Foto de ${item.user.name}"
+      style="color: ${item.color};"
+    />
+
+    <div class="author-info">
+      <p class="author-name">${item.user.name}</p>
+      <p class="photo-date">${date}</p>
+    </div>
+  </li>
+`;
+}
