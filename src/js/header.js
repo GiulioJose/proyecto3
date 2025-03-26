@@ -4,6 +4,7 @@ import lightIcon from '@/assets/icons/light.png';
 import profileImg from '@/assets/images/profile.png';
 import logoIcon from '@/assets/icons/logo.png';
 
+import { setupSearchListeners } from './component/input.js';
 import { fetchAndRender } from './gallery.js';
 
 const headerTemplate = () => {
@@ -32,22 +33,17 @@ const listeners = () => {
     const theme = document.body.classList.contains("dark");
     document.querySelector("#darkmodeicon").src = theme ? lightIcon : darkIcon;
   });
-
-  // Búsqueda con loader
-  const searchBtn = document.querySelector('#searchbtn');
-  const searchInput = document.querySelector('#searchinput');
-
-  searchBtn.addEventListener('click', () => {
-    const keyword = searchInput.value.trim();
-    if (!keyword) return;
-
-    fetchAndRender(keyword); // ✅ activa loader y busca
-  });
 };
 
 const printHeaderTemplate = () => {
   document.querySelector("header").innerHTML = headerTemplate();
   listeners();
+  setupSearchListeners();
+
+  const logo = document.querySelector('.logo');
+  logo.addEventListener('click', () => {
+    fetchAndRender('carros');
+  });
 };
 
 printHeaderTemplate();
