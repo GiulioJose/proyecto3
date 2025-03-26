@@ -4,7 +4,7 @@ import lightIcon from '@/assets/icons/light.png';
 import profileImg from '@/assets/images/profile.png';
 import logoIcon from '@/assets/icons/logo.png';
 
-import { setupSearchListeners } from './component/input.js';
+import { setupSearchListeners, firstSearch } from './component/input.js';
 import { fetchAndRender } from './gallery.js';
 
 const headerTemplate = () => {
@@ -42,7 +42,11 @@ const printHeaderTemplate = () => {
 
   const logo = document.querySelector('.logo');
   logo.addEventListener('click', () => {
-    fetchAndRender('carros');
+    if (firstSearch) {
+      fetchAndRender(firstSearch);
+    } else {
+      location.reload();
+    }
   });
 };
 

@@ -1,35 +1,33 @@
-// API
-import { searchPhotos } from './api/unsplash.js';
-
-// Componentes
+import { searchPhotos, getRandomPhotos } from './api/unsplash.js';
 import { cardTemplate } from './component/card.js';
 import { loaderTemplate } from './component/loader.js';
 
-// Referencia al <main>
 const main = document.querySelector('main');
 
-// Renderizador de galería
-const renderGallery = (items) => {
+const renderGallery = (photos) => {
   const gallery = document.createElement('ul');
   gallery.classList.add('gallery');
 
-  items.forEach(item => {
-    gallery.innerHTML += cardTemplate(item);
+  photos.forEach(photo => {
+    gallery.innerHTML += cardTemplate(photo);
   });
 
-  main.innerHTML = ''; // limpia el loader
+  main.innerHTML = '';
   main.appendChild(gallery);
 };
 
-// Búsqueda con loader (async/await)
-const fetchAndRender = async (query) => {
+export const fetchAndRender = async (query) => {
   main.innerHTML = loaderTemplate();
 
   const items = await searchPhotos(query);
   renderGallery(items);
 };
 
-// Primera carga
-fetchAndRender('carros');
+const loadInitialPhotos = async () => {
+  main.innerHTML = loaderTemplate();
 
-export { renderGallery, fetchAndRender };
+  const items = await getRandomPhotos(30);
+  renderGallery(items);
+};
+
+loadInitialPhotos();
