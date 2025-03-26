@@ -17,7 +17,7 @@ const renderGallery = (items) => {
 };
 
 // Ejecutar búsqueda real
-searchPhotos('nature').then(items => {
+searchPhotos('carros').then(items => {
   renderGallery(items);
 });
 
