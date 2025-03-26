@@ -4,8 +4,7 @@ import lightIcon from '@/assets/icons/light.png';
 import profileImg from '@/assets/images/profile.png';
 import logoIcon from '@/assets/icons/logo.png';
 
-import { searchPhotos } from './api/unsplash.js';
-import { renderGallery } from './gallery.js';
+import { fetchAndRender } from './gallery.js';
 
 const headerTemplate = () => {
   return `
@@ -34,21 +33,15 @@ const listeners = () => {
     document.querySelector("#darkmodeicon").src = theme ? lightIcon : darkIcon;
   });
 
-  // Búsqueda
+  // Búsqueda con loader
   const searchBtn = document.querySelector('#searchbtn');
   const searchInput = document.querySelector('#searchinput');
 
-  searchBtn.addEventListener('click', async () => {
+  searchBtn.addEventListener('click', () => {
     const keyword = searchInput.value.trim();
     if (!keyword) return;
 
-    const results = await searchPhotos(keyword);
-
-    // Limpiar galería antes de agregar nuevas tarjetas
-    const main = document.querySelector('main');
-    main.innerHTML = ''; 
-
-    renderGallery(results);
+    fetchAndRender(keyword); // ✅ activa loader y busca
   });
 };
 

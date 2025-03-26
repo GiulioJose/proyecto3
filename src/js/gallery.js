@@ -3,6 +3,10 @@ import { searchPhotos } from './api/unsplash.js';
 
 // Componentes
 import { cardTemplate } from './component/card.js';
+import { loaderTemplate } from './component/loader.js';
+
+// Referencia al <main>
+const main = document.querySelector('main');
 
 // Renderizador de galería
 const renderGallery = (items) => {
@@ -13,12 +17,19 @@ const renderGallery = (items) => {
     gallery.innerHTML += cardTemplate(item);
   });
 
-  document.querySelector('main').appendChild(gallery);
+  main.innerHTML = ''; // limpia el loader
+  main.appendChild(gallery);
 };
 
-// Ejecutar búsqueda real
-searchPhotos('carros').then(items => {
-  renderGallery(items);
-});
+// Búsqueda con loader (async/await)
+const fetchAndRender = async (query) => {
+  main.innerHTML = loaderTemplate();
 
-export { renderGallery };
+  const items = await searchPhotos(query);
+  renderGallery(items);
+};
+
+// Primera carga
+fetchAndRender('carros');
+
+export { renderGallery, fetchAndRender };
