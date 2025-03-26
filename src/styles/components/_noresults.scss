@@ -1,20 +1,34 @@
 .no-results-message {
-  background-color: #fff3cd;
-  border: 1px solid #ffeeba;
-  color: #856404;
-  padding: 1rem 1.5rem;
-  margin: 1.5rem auto;
-  border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  margin: 2rem auto;
   max-width: 600px;
   text-align: center;
-  font-size: 1rem;
-  line-height: 1.5;
-
-  strong {
-    font-weight: bold;
-  }
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  color: #333;
 
   p {
-    margin: 0.5rem 0;
+    margin: 0.75rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  p:first-child {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #c0392b;
+  }
+
+  p:nth-child(2) {
+    color: #2c3e50;
+    font-weight: 500;
+  }
+
+  p:last-child {
+    font-size: 0.95rem;
+    color: #555;
   }
 }
